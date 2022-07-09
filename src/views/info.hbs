@@ -1,0 +1,106 @@
+<nav class="navbar sticky-top navbar-dark bg-dark">
+    <div class="container-fluid">
+        <div class="d-flex">
+            <a href="/index"><img class="ms-5" src="/images/icons/app_icon.png" alt="App icon" width="40" height="40"></a>
+            <span class="ms-3 text-light" style="font-size: 1.5rem;">Coder Market - Backend</span>
+        </div>
+        <div>
+            <button class="btn btn-danger me-5 ms-2" type="button" onclick="goTo('/logout')">Logout</button>
+        </div>
+    </div>
+</nav>
+
+
+<div class="d-flex flex-column mt-5 w-25 mx-auto">
+    <h3 class="mb-3 align-self-center">Información del Servidor</h3>
+</div>
+<section>
+    <div class="container pt-5">
+        <div class="row justify-content-center">
+           
+            <div class="col-lg-8 w-50">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Argumentos</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{info.args}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Plataforma</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{info.platform}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Número de CPUs</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{info.numCPUs}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Versión de Node</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{info.nodeVersion}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Memoria reservada</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{info.reservedMemory}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Ruta de ejecución</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{info.execPath}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">ID del proceso</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{info.processId}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Carpeta del Proyecto</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{info.projectFolder}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<form class="form mt-3" role="form" action="/index" method="get" autocomplete="off">
+    <div class="form-group d-flex">
+        <input class="btn btn-outline-dark my-5 mx-auto" type="submit" value="Volver">
+    </div>
+</form>

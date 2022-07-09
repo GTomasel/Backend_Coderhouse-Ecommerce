@@ -1,0 +1,27 @@
+<nav class="navbar sticky-top navbar-dark bg-dark">
+    <div class="container-fluid">
+        <div class="d-flex">
+            <a href="/index"><img class="ms-5" src="/images/icons/app_icon.png" alt="App icon" width="40" height="40"></a>
+            <span class="ms-3 text-light" style="font-size: 1.5rem;">Coder Market - Backend</span>
+        </div>
+        <div>
+            <span class="text-light">{{username}}</span>
+            <a href="/profile"><img class="mx-3" style="object-fit:cover;" src="{{userAvatar}}" alt="cart icon"
+                    width="40" height="40"></a>
+            <a href="/api/carrito/{{userCartId}}/productos"><img src="/images/icons/cart_icon.png" alt="cart icon" width="40"
+                    height="40"></a>
+            <button class="btn btn-danger me-5 ms-2" type="button" onclick="goTo('/logout')">Logout</button>
+        </div>
+    </div>
+</nav>
+
+<div class="d-flex flex-column mt-5 w-50 mx-auto">
+    <h3 class="mb-3 align-self-center">Centro de Mensajes</h3>
+    
+    <div class="d-flex flex-column mt-4  mx-auto">
+        <p class="text-light"></p>
+    </div>
+    <input id="chatInput" class="w-50 align-self-center" name="chatInput" type="text"
+        placeholder="Escribe tu consulta" />
+    <button id="chatBtn" class="btn btn-secondary mt-3 mb-5  align-self-center">Enviar</button>
+</div>

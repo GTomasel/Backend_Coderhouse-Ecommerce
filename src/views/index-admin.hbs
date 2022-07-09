@@ -1,0 +1,117 @@
+<nav class="navbar sticky-top navbar-dark bg-dark">
+    <div class="container-fluid">
+        <div class="d-flex">
+            <a href="/index"><img class="ms-5" src="/images/icons/app_icon.png" alt="App icon" width="40" height="40"></a>
+            <span class="ms-3 text-light" style="font-size: 1.5rem;">Coder Market - Backend</span>
+        </div>
+        <div>
+            <button class="btn btn-danger me-5 ms-2" type="button" onclick="goTo('/logout')">Logout</button>
+        </div>
+    </div>
+</nav>
+
+<div class="d-flex flex-column mt-5 w-25 mx-auto">
+    <h3 class="mb-3 align-self-center">Administrador</h3>
+</div>
+
+<div class="d-flex flex-column flex-wrap align-items-center p-5">
+
+    <button class="btn btn-outline-dark mb-4 mt-5" type="button" data-bs-toggle="collapse"
+        data-bs-target="#addCollapse" aria-expanded="false" aria-controls="addCollapse">Agregar nuevo producto</button>
+    <div class="collapse multi-collapse" id="addCollapse">
+
+        <form class="form mt-1 mb-4" role="form" action="/api/productos" method="post" autocomplete="off">
+            <h3 class="mb-4">Agregar nuevo producto</h3>
+
+            <div class="form-group">
+                <input name='nombre' placeholder="Nombre" class="form-control" type="name" required>
+            </div>
+            <div class="form-group mt-1">
+                <input name='descripcion' placeholder="Descripción" class="form-control" type="description" required>
+            </div>
+            <div class="form-group mt-1">
+                <input name='codigo' placeholder="Código" class="form-control" type="code" required>
+            </div>
+            <div class="form-group mt-1">
+                <input name='foto' placeholder="Foto" class="form-control" type="photo" required>
+            </div>
+            <div class="form-group mt-1">
+                <input name='categoria' placeholder="Categoria" class="form-control" type="category" required>
+            </div>
+            <div class="form-group mt-1">
+                <input name='precio' placeholder="Precio" class="form-control" type="price" required pattern="[0-9]+">
+            </div>
+            <div class="form-group mt-1">
+                <input name='stock' placeholder="Stock" class="form-control" type="stock" required pattern="[0-9]+">
+            </div>
+
+            <div class="form-group d-flex">
+                <input class="btn btn-success mb-4 my-3 mx-auto" type="submit" value="Agregar">
+            </div>
+        </form>
+    </div>
+
+
+    <button class="btn btn-outline-dark mb-4" type="button" data-bs-toggle="collapse"
+        data-bs-target="#updateCollapse" aria-expanded="false" aria-controls="updateCollapse">Actualizar
+        producto</button>
+    <div class="collapse multi-collapse" id="updateCollapse">
+
+        <form class="form mt-1 mb-4" role="form" action="/api/productos?_method=PUT" method="post" autocomplete="off">
+            <h3 class="mb-4">Actualizar producto</h3>
+
+            <div class="form-group">
+                <input name='id' placeholder="ID del producto" class="form-control" type="id" required>
+            </div>
+            <div class="form-group mt-3">
+                <input name='nombre' placeholder="Nombre" class="form-control" type="name" required>
+            </div>
+            <div class="form-group mt-1">
+                <input name='descripcion' placeholder="Descripción" class="form-control" type="description" required>
+            </div>
+            <div class="form-group mt-1">
+                <input name='codigo' placeholder="Código" class="form-control" type="code" required>
+            </div>
+            <div class="form-group mt-1">
+                <input name='foto' placeholder="Foto" class="form-control" type="photo" required>
+            </div>
+            <div class="form-group mt-1">
+                <input name='categoria' placeholder="Categoria" class="form-control" type="category" required>
+            </div>
+            <div class="form-group mt-1">
+                <input name='precio' placeholder="Precio" class="form-control" type="price" required pattern="[0-9]+">
+            </div>
+            <div class="form-group mt-1">
+                <input name='stock' placeholder="Stock" class="form-control" type="stock" required pattern="[0-9]+">
+            </div>
+
+            <div class="form-group d-flex">
+                <input class="btn btn-success my-3 mx-auto" type="submit" value="Actualizar">
+            </div>
+        </form>
+    </div>
+
+
+    <button class="btn btn-outline-danger" type="button" data-bs-toggle="collapse" data-bs-target="#deleteCollapse"
+        aria-expanded="false" aria-controls="deleteCollapse">Eliminar producto</button>
+    <div class="collapse multi-collapse" id="deleteCollapse">
+
+        <form class="form mt-3" role="form" action="/api/productos?_method=DELETE" method="post" autocomplete="off">
+            <h3 class="mb-4">Eliminar producto</h3>
+
+            <div class="form-group">
+                <input name='id' placeholder="ID del producto" class="form-control" type="id" required>
+            </div>
+
+            <div class="form-group d-flex">
+                <input class="btn btn-danger my-3 mx-auto" type="submit" value="Eliminar">
+            </div>
+        </form>
+    </div>
+</div>
+
+<form class="form" role="form" action="/info" method="get" autocomplete="off">
+    <div class="form-group d-flex">
+        <input class="btn btn-outline-primary my-5 mx-auto" type="submit" value="Información del servidor">
+    </div>
+</form>

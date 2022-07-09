@@ -1,0 +1,8 @@
+{
+    "nombre": "",
+    "descripcion": "",
+    "codigo": "",
+    "foto": "",
+    "precio": "",
+    "stock": ""
+}

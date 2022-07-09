@@ -1,0 +1,74 @@
+<nav class="navbar sticky-top navbar-dark bg-dark">
+    <div class="container-fluid">
+        <div class="d-flex">
+            <a href="/index"><img class="ms-5" src="/images/icons/app_icon.png" alt="App icon" width="40" height="40"></a>
+            <span class="ms-3 text-light" style="font-size: 1.5rem;">Coder Market - Backend</span>
+        </div>
+        <div>
+            <span class="text-light">{{userData.username}}</span>
+            <a href="/profile"><img class="mx-3" style="object-fit:cover;" src="{{userData.userAvatar}}" alt="profile picture"
+                    width="40" height="40"></a>
+            <a href="/api/carrito/{{userData.userCartId}}/productos"><img src="/images/icons/cart_icon.png" alt="cart icon" width="40"
+                    height="40"></a>
+            <button class="btn btn-danger me-5 ms-2" type="button" onclick="goTo('/logout')">Logout</button>
+        </div>
+    </div>
+</nav>
+
+<div class="d-flex flex-column mt-5 w-25 mx-auto">
+    <h3 class="mb-3 align-self-center">Mis órdenes ({{userData.userCartId}})</h3>
+</div>
+
+<div class="d-flex flex-column flex-wrap align-content-center mt-4 p-5">
+    {{#each foundOrders}}
+    <h4 class="mb-2" style="">Detalle de su pedido: orden número "{{id}}"</h4>
+    <table class="mb-5 w-50"
+        style="border: solid 2px #DDEEEE;border-collapse: collapse;border-spacing: 0;font: normal 14px Roboto, sans-serif;">
+        <thead>
+            <tr>
+                <th scope="col"
+                    style="background-color: #c8e6f5;border: solid 1px #DDEEEE;color: #0082c1;padding: 10px;text-align: left;text-shadow: 1px 1px 1px #fff;">
+                    ID</th>
+                <th scope="col"
+                    style="background-color: #c8e6f5;border: solid 1px #DDEEEE;color: #0082c1;padding: 10px;text-align: left;text-shadow: 1px 1px 1px #fff;">
+                    Nombre</th>
+                <th scope="col"
+                    style="background-color: #c8e6f5;border: solid 1px #DDEEEE;color: #0082c1;padding: 10px;text-align: left;text-shadow: 1px 1px 1px #fff;">
+                    Descripcion</th>
+                <th scope="col"
+                    style="background-color: #c8e6f5;border: solid 1px #DDEEEE;color: #0082c1;padding: 10px;text-align: left;text-shadow: 1px 1px 1px #fff;">
+                    Codigo</th>
+                <th scope="col"
+                    style="background-color: #c8e6f5;border: solid 1px #DDEEEE;color: #0082c1;padding: 10px;text-align: left;text-shadow: 1px 1px 1px #fff;">
+                    Precio</th>
+                <th scope="col"
+                    style="background-color: #c8e6f5;border: solid 1px #DDEEEE;color: #0082c1;padding: 10px;text-align: left;text-shadow: 1px 1px 1px #fff;">
+                    Cantidad</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each productos}}
+            <tr>
+                <th scope="row">{{id}}</th>
+                <td style="border: solid 1px #DDEEEE;color: #333;padding: 10px;text-shadow: 1px 1px 1px #fff;">
+                    {{nombre}}</td>
+                <td style="border: solid 1px #DDEEEE;color: #333;padding: 10px;text-shadow: 1px 1px 1px #fff;">
+                    {{descripcion}}</td>
+                <td style="border: solid 1px #DDEEEE;color: #333;padding: 10px;text-shadow: 1px 1px 1px #fff;">
+                    {{codigo}}</td>
+                <td style="border: solid 1px #DDEEEE;color: #333;padding: 10px;text-shadow: 1px 1px 1px #fff;">
+                    ${{precio}}</td>
+                <td style="border: solid 1px #DDEEEE;color: #333;padding: 10px;text-shadow: 1px 1px 1px #fff;">
+                    {{qty}} u.</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{/each}}
+</div>
+
+<form class="form mb-5" role="form" action="/index" method="get" autocomplete="off">
+    <div class="form-group d-flex">
+        <input class="btn btn-outline-dark mx-auto" type="submit" value="Volver">
+    </div>
+</form>
