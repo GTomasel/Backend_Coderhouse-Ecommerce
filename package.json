@@ -1,11 +1,11 @@
 {
-  "name": "3er Preentrega Backend Gabriel Tomasel",
-  "version": "1.0.14",
+  "name": "Proyecto Final Backend Gabriel Tomasel",
+  "version": "1.0.0",
   "description": "Eccomerce Backend Coderhouse",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon src/server.js"
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
   },
   "keywords": [],
   "author": "",
@@ -18,15 +18,16 @@
     "express": "^4.16.2",
     "express-handlebars": "^3.1.0",
     "express-session": "^1.17.3",
-    "firebase-admin": "^10.2.0",
     "log4js": "^6.4.6",
     "method-override": "^3.0.0",
     "mongoose": "^5.3.4",
     "nodemailer": "^6.7.5",
-    "nodemon": "^2.0.16",
     "passport": "^0.2.2",
     "passport-local": "^1.0.0",
     "socket.io": "^4.5.1",
     "twilio": "^3.77.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
   }
 }

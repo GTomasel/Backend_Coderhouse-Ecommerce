@@ -84,10 +84,10 @@ class mongoDBDao {
         }
     }
 
-    async save(array) {
+    async save(data) {
         try {
             dbController.conectarMongoDB(url)
-            const addCollection = await new this.collectionModel(array)
+            const addCollection = await new this.collectionModel(data)
             await addCollection.save()
             return (`Nuevo elemento agregada exitosamente`)
         }

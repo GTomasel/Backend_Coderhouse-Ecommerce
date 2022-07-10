@@ -1,37 +1,25 @@
 const chatRepo = new (require('../repositories/ChatRepo'))()
-const MessageDto = require('../dto/MessageDto')
-
 const log4js = require('../utils/log4js')
 
 
 async function chatController(socket) {
-    log4js.logInfo('User connected. ID: ' + socket.id)
+    try {
+        console.log(`User connected ${socket.id}`)
 
-    async function handleMessages() {
-        try {
-            const userMessages = await chatRepo.getAll()
-            socket.emit('data', [userMessages, null])
+        const allMsgs = await chatRepo.getAll()
+        socket.emit('loadMessages', allMsgs)
 
-            socket.on('message', msgData => {
-                const newMessage = new MessageDto(msgData)
-                chatRepo.save(newMessage)
-
-                userMessages.push(newMessage)
-                io.sockets.emit('data', [userMessages, null])
-            })
-        }
-        catch (err) {
-            error.message = `Error al procesar los mensajes : ${error.message}`
-            log4js.logError(error)
-            throw new Error(error)
-        }
+        socket.on('chatMessage', async (msg) => {
+            await chatRepo.save(msg)
+            socket.broadcast.emit('chatMessage', msg)
+            socket.emit('chatMessage', msg)
+        })
     }
-    handleMessages()
-
-    // const username = req.session.username
-    // const userAvatar = req.session.userAvatar
-    // const userCartId = req.session.email
-    // res.render('chat', { username, userAvatar, userCartId, layout: 'chatMain.hbs' })
+    catch (error) {
+        error.message = `Error al generar la orden de compra`
+        log4js.logError(error)
+        throw new Error(error)
+    }
 }
 
 

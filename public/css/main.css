@@ -1,4 +1,93 @@
-a, a:hover, a:focus, a:active, .btn-link {
-    text-decoration: none;
-    color: inherit;
+a,
+a:hover,
+a:focus,
+a:active,
+.btn-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.chatFloatBtn {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 40px;
+  right: 2rem;
+  z-index: 100;
+}
+
+#chat-container {
+  height: 70vh;
+  width: 85%;
+  margin: 30px auto;
+  border: 1px solid #ddd;
+  border-radius: 0.25rem;
+  box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.5);
+  background: #ffffff6b;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+#chat-window {
+  padding: 14px 0;
+  margin: 0 0 0 20px;
+  color: #555;
+  overflow: auto;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.chatUserName {
+  color: #3778dd;
+  flex: auto 0 0;
+}
+
+#chat-output {
+  color: #595959;
+  padding: 14px 0;
+  margin: 0 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+#chat-output p {
+  width: 60%;
+}
+
+#chat-actions p {
+  padding: 14px 0;
+  margin: 0 20px;
+  border-bottom: 1px solid #e9e9e9;
+  color: #555;
+}
+
+#chat-input {
+  padding: 10px 20px;
+  box-sizing: border-box;
+  border: 0;
+  background: #eee;
+  display: block;
+  width: 100%;
+  border-radius: 0.25rem;
+}
+
+#to-input {
+  color: #595959;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  border: 0;
+  margin-bottom: 4px;
+  /* background: #eee; */
+  display: block;
+  width: 100%;
+  border-radius: 0.25rem;
+}
+
+.input-required {
+  box-shadow: 0px 0px 2px 4px rgba(225, 30, 51, 0.58);
+}
+
+#chat-send:focus {
+  box-shadow: 0 0 0 0.25rem rgba(33, 37, 41, 0);
 }

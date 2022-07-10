@@ -1,4 +1,6 @@
 const getDao = require('../daos/daoFactory.js')
+const MessageDto = require('../dto/MessageDto')
+
 
 class ChatRepo {
 
@@ -16,8 +18,9 @@ class ChatRepo {
         return data
     }
 
-    async save(msj) {
-        const result = await this.dao.save(msj)
+    async save(msg) {
+        const msgDto = new MessageDto(msg)
+        const result = await this.dao.save(msgDto)
         return result
     }
 

@@ -1,15 +1,16 @@
 <nav class="navbar sticky-top navbar-dark bg-dark">
     <div class="container-fluid">
         <div class="d-flex">
-            <a href="/index"><img class="ms-5" src="/images/icons/app_icon.png" alt="App icon" width="40" height="40"></a>
+            <a href="/index"><img class="ms-5" src="/images/icons/app_icon.png" alt="App icon" width="40"
+                    height="40"></a>
             <span class="ms-3 text-light" style="font-size: 1.5rem;">Coder Market - Backend</span>
         </div>
         <div>
             <span class="text-light">{{userData.username}}</span>
-            <a href="/profile"><img class="mx-3" style="object-fit:cover;" src="{{userData.userAvatar}}" alt="profile picture"
-                    width="40" height="40"></a>
-            <a href="/api/carrito/{{userData.userCartId}}/productos"><img src="/images/icons/cart_icon.png" alt="cart icon" width="40"
-                    height="40"></a>
+            <a href="/profile"><img class="mx-3" style="object-fit:cover;" src="{{userData.userAvatar}}"
+                    alt="profile picture" width="40" height="40"></a>
+            <a href="/api/carrito/{{userData.userCartId}}/productos"><img src="/images/icons/cart_icon.png"
+                    alt="cart icon" width="40" height="40"></a>
             <button class="btn btn-danger me-5 ms-2" type="button" onclick="goTo('/logout')">Logout</button>
         </div>
     </div>
@@ -20,8 +21,8 @@
         <div class="d-flex justify-content-center mb-2">
             <input style="width: 17%" type="text" id="search" name="search" placeholder="Ingrese ID del producto">
             <button class="btn btn-outline-dark mx-2">Buscar</button>
-            <a class="d-flex align-items-center" href="/index"><img src="/images/icons/cancel.png" alt="cart icon" width="25"
-                    height="25"></a>
+            <a class="d-flex align-items-center" href="/index"><img src="/images/icons/cancel.png" alt="cart icon"
+                    width="25" height="25"></a>
         </div>
     </form>
 
@@ -54,8 +55,8 @@
             <p class="card-text mt-2">• ${{precio}}</p>
             <p class="card-text">{{descripcion}}</p>
         </div>
-        <form class="d-flex flex-column w-100" role="form" action="/api/carrito/{{../userData.userCartId}}/productos/{{id}}"
-            method="post" autocomplete="off">
+        <form class="d-flex flex-column w-100" role="form"
+            action="/api/carrito/{{../userData.userCartId}}/productos/{{id}}" method="post" autocomplete="off">
             <div class="d-flex justify-content-center mb-2">
                 <input style="width: 17%" type="number" id="qty" name="qty" value="1" min="1" max="{{stock}}">
                 <label class="ms-2">(Stock: {{stock}}u. )</label>
@@ -65,3 +66,5 @@
     </div>
     {{/each}}
 </div>
+
+<a href="/chat"><img class="chatFloatBtn" src="/images/icons/chat.png" alt="chat icon"></a>

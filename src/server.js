@@ -3,10 +3,6 @@ require('dotenv').config({ path: `${process.env.NODE_ENV}.env` })
 const express = require('express')
 const session = require('express-session')
 const app = express()
-const { Server: HttpServer } = require('http')
-//const { Server: IOServer } = require('socket.io')
-const httpServer = new HttpServer(app)
-//const io = new IOServer(httpServer)
 
 const handlebars = require('express-handlebars')
 const MongoStore = require('connect-mongo')
@@ -15,12 +11,13 @@ const cluster = require('cluster')
 const path = require('path');
 const methodOverride = require('method-override');
 
+const chatController = require('./controllers/chatController')
 const passport = require('./controllers/passportController');
 const config = require('./utils/config')
 const dbController = require('./db/mongoDb')
 const middlewares = require("./utils/middlewares")
-//const webSocketChat = require('./controllers/chatController')
 const log4js = require('./utils/log4js')
+
 
 
 if (cluster.isPrimary && config.mode === 'cluster') {
@@ -76,16 +73,16 @@ if (cluster.isPrimary && config.mode === 'cluster') {
     const routerCart = require("../src/routers/carts.routes")
     const routerCheckout = require("../src/routers/checkout.routes")
     const routerProfile = require("../src/routers/profile.routes")
-    //const routerChat = require("../src/routers/chat.routes")
+    const routerChat = require("../src/routers/chat.routes")
 
     app.get('/', function (req, res) {
         res.redirect('/login')
     })
     app.use('/login', routerLogin)
     app.use('/signup', routerSignup)
-    
+
     app.use(middlewares.expiredSession)
-    
+
     app.use('/logout', routerLogout)
     app.use('/index', routerIndex)
     app.use('/info', routerInfo)
@@ -93,7 +90,7 @@ if (cluster.isPrimary && config.mode === 'cluster') {
     app.use('/api/carrito', routerCart)
     app.use('/checkout', routerCheckout)
     app.use('/profile', routerProfile)
-    //app.use('/chat', routerChat)
+    app.use('/chat', routerChat)
 
     app.use(middlewares.errorHandler)
     app.use(middlewares.notFound)
@@ -102,38 +99,9 @@ if (cluster.isPrimary && config.mode === 'cluster') {
         if (err) return log4js.logError(`error en conexión de base de datos, ${err.message}`)
         log4js.logInfo('BASE DE DATOS CONECTADA')
     })
+ 
 
-
-    // const Repository = require('./repositories/ChatRepo')
-    // const repo = new Repository()
-    // const MessageDto = require('./dto/MessageDto')
-
-    // io.on('connection', (socket) => {
-    //     log4js.logInfo('User connected. ID: ' + socket.id)
-
-    //     async function handleMessages() {
-    //         try {
-    //             const userMessages = await repo.getAll()
-    //             socket.emit('data', [userMessages, null])
-
-    //             socket.on('message', msgData => {
-    //                 const newMessage = new MessageDto(msgData)
-    //                 repo.save(newMessage)
-
-    //                 userMessages.push(newMessage)
-    //                 io.sockets.emit('data', [userMessages, null])
-    //             })
-    //         }
-    //         catch (err) {
-    //             error.message = `Error al procesar los mensajes : ${error.message}`
-    //             log4js.logError(error)
-    //             throw new Error(error)
-    //         }
-    //     }
-    //     handleMessages()
-    // })
-
-    const server = httpServer.listen(config.PORT, () => { })
+    const server = app.listen(config.PORT, () => { })
 
     if (config.mode === 'fork' || config.mode === 'undefined') {
         log4js.logInfo(`Server listening on port ${config.PORT}`)
@@ -144,4 +112,10 @@ if (cluster.isPrimary && config.mode === 'cluster') {
         log4js.logError(`Server error: ${error.message}`)
         throw new Error(`Error interno del servidor`)
     })
+
+    const SocketIO = require('socket.io')
+    const io = SocketIO(server)
+    
+    io.on('connection', chatController)
 }
+
