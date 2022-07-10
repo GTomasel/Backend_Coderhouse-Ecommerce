@@ -16,23 +16,31 @@ async function getAllProducts(req, res, next) {
             allProducts = await productsController.getAll()
         }
 
-        const query = await productsController.getAll()
-        let categories = []
-        for (let i = 0; i < query.length; i++) {
-            categories.push(query[i].categoria)
-        }
-        const filteredCategories = [...new Set(categories)];
-
-        const userData = {
-            username: req.session.username,
-            userAvatar: req.session.userAvatar,
-            userCartId: req.session.email
-        }
-
-        if (req.session.admin == true) {
-            res.render('index-admin')
+        if (allProducts[0] == null) {
+            res.set({ 'Refresh': '2; url=/login' })
+            const message = `No existe ningún producto con el id: ${id}`
+            res.render('message', {
+                message
+            })
         } else {
-            res.render('index', { allProducts, userData, filteredCategories })
+            const query = await productsController.getAll()
+            let categories = []
+            for (let i = 0; i < query.length; i++) {
+                categories.push(query[i].categoria)
+            }
+            const filteredCategories = [...new Set(categories)];
+
+            const userData = {
+                username: req.session.username,
+                userAvatar: req.session.userAvatar,
+                userCartId: req.session.email
+            }
+
+            if (req.session.admin == true) {
+                res.render('index-admin')
+            } else {
+                res.render('index', { allProducts, userData, filteredCategories })
+            }
         }
     }
     catch (error) {

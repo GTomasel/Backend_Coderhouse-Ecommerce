@@ -17,9 +17,9 @@
     </div>
 </nav>
 
-<div class="d-flex flex-column mt-5 w-50 mx-auto">
+<div class="d-flex flex-column mt-4 mx-auto">
     <h3 class="mb-3 align-self-center">Centro de Mensajes</h3>
-    <p class="align-self-center text-muted mb-1"><span id="userName">{{userData.username}}</span> (<span
+    <p class="align-self-center text-muted mb-0"><span id="userName">{{userData.username}}</span> (<span
             id="userID">{{userData.userCartId}}</span>)</p>
 
     <div id="chat-container">
@@ -29,7 +29,7 @@
         </div>
         <div>
             {{#if userData.admin}}
-            <input class="w-100" type="text" id="to-input" placeholder="Email del usuario al que quiere responder">
+            <input class="w-100" type="text" id="to-input" placeholder="Email del usuario al que quiere responder" disabled>
             {{/if}}
             <input type="text" id="chat-input" placeholder="Escriba su mensaje">
             <button class="btn btn-outline-dark w-100" id="chat-send">Enviar</button>

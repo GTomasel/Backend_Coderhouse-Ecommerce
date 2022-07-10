@@ -85,19 +85,29 @@ class CartsControllers {
         const idCart = req.params.id
         const idProd = req.params.id_prod
         const newProduct = await productController.getById("id", idProd)
+        newProduct.qty = Number(req.body.qty)
 
         try {
             const cartArray = await cartRepo.getById("id", idCart)
             const findDuplicated = cartArray.productos.find(prod => prod.id == newProduct.id)
 
             if (findDuplicated !== undefined) {
-                res.set({ 'Refresh': '3; url=/index' })
-                const message = `Ya se encuentra el producto agregado al carrito, regresando al inicio.. `
-                res.render('message', {
-                    message
-                });
+                newProduct.qty += findDuplicated.qty
+
+                if (newProduct.qty > newProduct.stock) {
+                    res.set({ 'Refresh': '3; url=/index' })
+                    const message = `No hay más stock del producto, regresando al inicio.. `
+                    res.render('message', {
+                        message
+                    })
+                } else {
+                    const itemIndex = cartArray.productos.findIndex(prod => prod.id == newProduct.id)
+                    cartArray.productos[itemIndex] = { ...cartArray.productos[itemIndex], qty: newProduct.qty }
+                    await cartRepo.update(idCart, cartArray.productos)
+                    res.redirect(`/api/carrito/${idCart}/productos`)
+                }
+
             } else {
-                newProduct.qty = req.body.qty
                 cartArray.productos.push(newProduct)
                 await cartRepo.update(idCart, cartArray.productos)
                 res.redirect(`/api/carrito/${idCart}/productos`)
