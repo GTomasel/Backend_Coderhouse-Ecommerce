@@ -4,7 +4,7 @@ const log4js = require('../utils/log4js')
 
 async function chatController(socket) {
     try {
-        console.log(`User connected ${socket.id}`)
+        log4js.logInfo(`User connected ${socket.id}`)
 
         const allMsgs = await chatRepo.getAll()
         socket.emit('loadMessages', allMsgs)

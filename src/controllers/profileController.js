@@ -1,4 +1,4 @@
-const ordersRepo = new (require('../repositories/ordersRepo'))()
+const ordersRepo = new (require('../repositories/OrdersRepo'))()
 
 const log4js = require('../utils/log4js')
 

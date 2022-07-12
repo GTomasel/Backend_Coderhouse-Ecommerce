@@ -99,7 +99,7 @@ if (cluster.isPrimary && config.mode === 'cluster') {
         if (err) return log4js.logError(`error en conexión de base de datos, ${err.message}`)
         log4js.logInfo('BASE DE DATOS CONECTADA')
     })
- 
+
 
     const server = app.listen(config.PORT, () => { })
 
@@ -114,8 +114,13 @@ if (cluster.isPrimary && config.mode === 'cluster') {
     })
 
     const SocketIO = require('socket.io')
-    const io = SocketIO(server)
-    
+    const io = SocketIO(server, {
+        cors: {
+            origin: "*",
+            methods: ["GET", "POST"]
+        }
+    })
+
     io.on('connection', chatController)
 }
 

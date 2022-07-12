@@ -17,7 +17,7 @@ log4js.configure({
 })
 
 const logInfo = (message) => {
-    if (process.env.NODE_ENV == 'PROD') {
+    if (process.env.NODE_ENV == 'DEV') {
         logger.info(message)
     }
 }

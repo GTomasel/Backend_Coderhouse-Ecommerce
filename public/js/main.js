@@ -28,7 +28,9 @@ btn.addEventListener('click', function () {
             })
             msgInput.classList.remove("input-required")
         }
-        toInput.classList.remove("input-required")
+        if (toInput !== null) {
+            toInput.classList.remove("input-required")
+        }
     }
 })
 

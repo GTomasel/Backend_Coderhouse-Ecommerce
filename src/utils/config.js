@@ -4,7 +4,7 @@ module.exports = {
     PORT: process.env.PORT || args.PORT || 8080,
     numCPUs: require('os').cpus().length,
     PERSISTENCIA: 'mongo',
-    mode: args.mode || 'cluster',
+    mode: args.mode || 'fork',
     TIEMPO_EXPIRACION: 1800000,
     URL_BASE_DE_DATOS: process.env.URL_BASE_DE_DATOS,
     adminMailCredentials: {
