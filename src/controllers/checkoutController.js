@@ -73,7 +73,7 @@ function checkout(req, res, next) {
                         </tbody>
                     </table>               
                     <br>
-                    <p>**Correo enviado desde el servidor de backend de CoderHouse - 3ra preentrega Gabriel Tomasel**</p>`
+                    <p>**Correo enviado desde el servidor de backend Coder Market - Gabriel Tomasel**</p>`
         }
         try {
             await transporter.sendMail(mailOptions)
