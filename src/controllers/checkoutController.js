@@ -80,6 +80,7 @@ function checkout(req, res, next) {
         } catch (error) {
             error.message = `Error al enviar el correo electrónico`
             log4js.logError(error)
+            throw new Error(error)
         }
     }
 
@@ -96,6 +97,7 @@ function checkout(req, res, next) {
         } catch (error) {
             error.message = `Error al enviar el mensaje de Whatsapp`
             log4js.logError(error)
+            throw new Error(error)
         }
     }
 }
