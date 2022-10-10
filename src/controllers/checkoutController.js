@@ -36,7 +36,7 @@ function checkout(req, res, next) {
 
     async function sendCheckoutMail(userCartContent, orderId) {
         const transporter = nodemailer.createTransport({
-            service: 'gmail',
+            host: 'smtp.ethereal.email',
             port: 587,
             auth: {
                 user: config.adminMailCredentials.adminMail,
@@ -45,7 +45,7 @@ function checkout(req, res, next) {
         });
 
         const mailOptions = {
-            from: 'App Ecommerce Backend Coderhouse',
+            from: `"App Ecommerce Backend Coderhouse" <${config.adminMailCredentials.adminMail}>`,
             to: req.session.email,
             subject: `Nuevo pedido de ${req.session.username} "${req.session.email}"`,
             html: `<h3 style="">Detalle de su pedido: orden número "${orderId}"</h3>
